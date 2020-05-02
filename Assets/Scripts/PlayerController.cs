@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
         HandlePlayerMovement();
+        HandlePlayerRotation();
     }
 
     private void HandlePlayerMovement() {
@@ -20,5 +21,13 @@ public class PlayerController : MonoBehaviour {
         lateralTranslation *= Time.deltaTime;
 
         transform.Translate(new Vector3(lateralTranslation, 0, forwardTranslation));
+    }
+
+    private void HandlePlayerRotation() {
+        float horizontalRotation = Input.GetAxis("Mouse X");
+
+        horizontalRotation *= Time.deltaTime ;
+
+        transform.Rotate(0, horizontalRotation, 0);
     }
 }
