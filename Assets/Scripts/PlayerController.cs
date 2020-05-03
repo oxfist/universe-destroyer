@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    void Start()
-    {
-        
-    }
+
+    public GameplayConfigurationType gameplayConfiguration;
+    public float movementSpeed;
+
 
     void Update() {
         HandlePlayerMovement();
@@ -17,16 +17,18 @@ public class PlayerController : MonoBehaviour {
         float forwardTranslation = Input.GetAxis("Vertical");
         float lateralTranslation = Input.GetAxis("Horizontal");
 
-        forwardTranslation *= Time.deltaTime;
-        lateralTranslation *= Time.deltaTime;
+        forwardTranslation *= Time.deltaTime * movementSpeed;
+        lateralTranslation *= Time.deltaTime * movementSpeed;
 
         transform.Translate(new Vector3(lateralTranslation, 0, forwardTranslation));
     }
 
     private void HandlePlayerRotation() {
         float horizontalRotation = Input.GetAxis("Mouse X");
+        float verticalRotation = Input.GetAxis("Mouse Y");
 
-        horizontalRotation *= Time.deltaTime ;
+        horizontalRotation *= gameplayConfiguration.cameraRotationSpeed;
+        verticalRotation *= gameplayConfiguration.cameraRotationSpeed;
 
         transform.Rotate(0, horizontalRotation, 0);
     }

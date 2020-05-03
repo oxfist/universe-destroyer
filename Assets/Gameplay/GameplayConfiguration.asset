@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbbc92b145c05c48afc5460533683d5, type: 3}
   m_Name: GameplayConfiguration
   m_EditorClassIdentifier: 
+  cameraMoveSpeed: 5
+  cameraRotationSpeed: 5
