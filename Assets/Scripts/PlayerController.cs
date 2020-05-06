@@ -50,7 +50,9 @@ public class PlayerController : MonoBehaviour {
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Instantiate(bullet, spawnPoint.position, Quaternion.identity);
+            Transform bulletTransform = Instantiate(bullet, spawnPoint.position, Quaternion.identity);
+            Rigidbody bulletRigidbody = bulletTransform.gameObject.GetComponent<Rigidbody>();
+            bulletRigidbody.AddForce(weapon.forward * gameplayConfiguration.bulletSpeed, ForceMode.Impulse);
         }
     }
 
