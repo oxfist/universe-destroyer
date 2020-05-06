@@ -10,10 +10,18 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private Transform weapon;
 
+    [SerializeField]
+    private Transform bullet;
+
+    [SerializeField]
+    private Transform spawnPoint;
+
+
     void Update()
     {
         HandlePlayerMovement();
         HandlePlayerRotation();
+        ShootBullet();
     }
 
     private void HandlePlayerMovement()
@@ -36,6 +44,14 @@ public class PlayerController : MonoBehaviour {
 
         transform.Rotate(0, horizontalRotation, 0);
         weapon.Rotate(-verticalRotation, 0, 0);
+    }
+
+    private void ShootBullet()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(bullet, spawnPoint.position, Quaternion.identity);
+        }
     }
 
     
