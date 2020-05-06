@@ -7,13 +7,17 @@ public class PlayerController : MonoBehaviour {
     public GameplayConfigurationType gameplayConfiguration;
     public float movementSpeed;
 
+    [SerializeField]
+    private Transform weapon;
 
-    void Update() {
+    void Update()
+    {
         HandlePlayerMovement();
         HandlePlayerRotation();
     }
 
-    private void HandlePlayerMovement() {
+    private void HandlePlayerMovement()
+    {
         float forwardTranslation = Input.GetAxis("Vertical");
         float lateralTranslation = Input.GetAxis("Horizontal");
 
@@ -31,5 +35,8 @@ public class PlayerController : MonoBehaviour {
         verticalRotation *= gameplayConfiguration.cameraRotationSpeed;
 
         transform.Rotate(0, horizontalRotation, 0);
+        weapon.Rotate(-verticalRotation, 0, 0);
     }
+
+    
 }
